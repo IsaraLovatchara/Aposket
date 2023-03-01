@@ -7,13 +7,100 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  background-color: rgb(0, 0, 0);
+.site-container {
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.btn-primary,
+.btn-outline-primary {
+  background-color: #e97451;
+  color: #000000;
+}
+.btn-primary:hover {
+  background-color: #36454f;
+  color: white;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+.product {
+  border: 1px #000000 solid;
+  margin: 1rem;
+}
+
+.product img {
+  height: 250px;
+  width: 250px;
+}
+
+.product-info {
   padding: 1rem;
 }
 
-header a {
-  color: aliceblue;
+.img-large {
+  max-width: 100%;
+}
+
+.img-thumbnail {
+  height: 80px;
+}
+
+.small-container {
+  max-width: 600px;
+}
+
+.checkout-steps > div {
+  border-bottom: 0.2rem solid #a0a0a0;
+  color: #a0a0a0;
+}
+.checkout-steps > div.active {
+  border-bottom: 0.2rem solid #f08000;
+  color: #f08000;
+}
+
+.navbar-brand {
   font-weight: bold;
-  text-decoration: none;
+}
+.side-navbar {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  background-color: #100901;
+  transition: 0.5s;
+}
+
+.site-container {
+  transition: 0.4s;
+}
+.active-cont {
+  margin-left: 240px;
+}
+.active-nav {
+  left: 0;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.search-button {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+.search-button:hover {
+  background-color: #5d6262;
+  color: white;
+  border-color: darkgrey;
 }
