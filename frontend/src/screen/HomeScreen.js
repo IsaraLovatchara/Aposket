@@ -46,7 +46,12 @@ function HomeScreen() {
       <Helmet>
         <title>Aposket</title>
       </Helmet>
-      <img alt="sliedshow" src="/images/SS.gif" height="500px" width="1090px" />
+      <img
+        alt="sliedshow"
+        src="/images/SSS.gif"
+        height="500px"
+        width="1090px"
+      />
       <br />
       <br />
       <h1>
