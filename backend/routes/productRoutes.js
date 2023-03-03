@@ -20,7 +20,7 @@ productRouter.post(
       category: 'sample category',
       title: 'sample title',
       countInStock: 0,
-//add
+      //add
       numReviews: 0,
       description: 'sample description',
     });
@@ -96,6 +96,7 @@ productRouter.get(
     const pageSize = query.pageSize || PAGE_SIZE;
     const page = query.page || 1;
     const category = query.category || '';
+    const title = query.title || '';
     const price = query.price || '';
     //add
     const order = query.order || '';
@@ -110,6 +111,7 @@ productRouter.get(
           }
         : {};
     const categoryFilter = category && category !== 'all' ? { category } : {};
+    const titleFilter = title && title !== 'all' ? { title } : {};
     //add
     const priceFilter =
       price && price !== 'all'
@@ -128,15 +130,16 @@ productRouter.get(
         ? { price: 1 }
         : order === 'highest'
         ? { price: -1 }
-//add
-        : order === 'newest'
+        : //add
+        order === 'newest'
         ? { createdAt: -1 }
         : { _id: -1 };
     const products = await Product.find({
       ...queryFilter,
       ...categoryFilter,
+      ...titleFilter,
       ...priceFilter,
-//add
+      //add
     })
       .sort(sortOrder)
       .skip(pageSize * (page - 1))
@@ -144,8 +147,9 @@ productRouter.get(
     const countProducts = await Product.countDocuments({
       ...queryFilter,
       ...categoryFilter,
+      ...titleFilter,
       ...priceFilter,
-//add
+      //add
     });
     res.send({
       products,
@@ -162,6 +166,15 @@ productRouter.get(
     res.send(categories);
   })
 );
+
+productRouter.get(
+  '/titles',
+  expressAsyncHandler(async (req, res) => {
+    const titles = await Product.find().distinct('title');
+    res.send(titles);
+  })
+);
+
 productRouter.get('/slug/:slug', async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {

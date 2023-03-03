@@ -49,13 +49,12 @@ const prices = [
   },
 ];
 
-
-
 export default function SearchScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const sp = new URLSearchParams(search); // /search?category=Shirts
+  const sp = new URLSearchParams(search);
   const category = sp.get('category') || 'all';
+  const title = sp.get('title') || 'all';
   const query = sp.get('query') || 'all';
   const price = sp.get('price') || 'all';
 
@@ -72,7 +71,7 @@ export default function SearchScreen() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&order=${order}`
+          `/api/products/search?page=${page}&query=${query}&category=${category}&title=${title}&price=${price}&order=${order}`
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {
@@ -83,7 +82,7 @@ export default function SearchScreen() {
       }
     };
     fetchData();
-  }, [category, error, order, page, price, query]);
+  }, [category, title, error, order, page, price, query]);
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -102,10 +101,11 @@ export default function SearchScreen() {
     const filterPage = filter.page || page;
     const filterCategory = filter.category || category;
     const filterQuery = filter.query || query;
-   //add
+    const filterTitle = filter.query || title;
+    //add
     const filterPrice = filter.price || price;
     const sortOrder = filter.order || order;
-    return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&order=${sortOrder}&page=${filterPage}`;
+    return `/search?category=${filterCategory}&title=${filterTitle}&query=${filterQuery}&price=${filterPrice}&order=${sortOrder}&page=${filterPage}`;
   };
   return (
     <div>
@@ -162,7 +162,6 @@ export default function SearchScreen() {
           </div>
           <div>
             <h3>Avg. Customer Review</h3>
-
           </div>
         </Col>
         <Col md={9}>
@@ -179,10 +178,8 @@ export default function SearchScreen() {
                     {query !== 'all' && ' : ' + query}
                     {category !== 'all' && ' : ' + category}
                     {price !== 'all' && ' : Price ' + price}
-                    
                     {query !== 'all' ||
                     category !== 'all' ||
-                    
                     price !== 'all' ? (
                       <Button
                         variant="light"

@@ -31,8 +31,6 @@ main {
   justify-content: center;
 }
 
-
-
 .product {
   border: 1px #000000 solid;
   margin: 1rem;
@@ -74,7 +72,7 @@ main {
 .side-navbar {
   width: 240px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   left: -300px;
   background-color: #100901;
   transition: 0.5s;
@@ -103,4 +101,16 @@ main {
   background-color: #5d6262;
   color: white;
   border-color: darkgrey;
+}
+
+.proceed-checkout {
+  background-color: #72ffb8;
+  color: #000000;
+  border-color: #000000;
+}
+
+.signin-button {
+  background-color: #72e3ff;
+  color: #000000;
+  border: none;
 }

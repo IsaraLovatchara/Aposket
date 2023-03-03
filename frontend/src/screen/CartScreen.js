@@ -115,6 +115,7 @@ export default function CartScreen() {
                       variant="primary"
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
+                      className="proceed-checkout"
                     >
                       Proceed to Checkout
                     </Button>

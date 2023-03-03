@@ -33,6 +33,12 @@ import ProductEditScreen from './screen/ProductEditScreen';
 import OrderListScreen from './screen/OrderListScreen';
 import UserListScreen from './screen/UserListScreen';
 import UserEditScreen from './screen/UserEditScreen';
+import { FiShoppingCart } from 'react-icons/fi';
+import { GrUserAdmin } from 'react-icons/gr';
+import { AiOutlineHistory, AiOutlineAreaChart } from 'react-icons/ai';
+import { GoSignOut, GoSignIn } from 'react-icons/go';
+import { MdSell } from 'react-icons/md';
+import { FaFileAlt, FaUserCog } from 'react-icons/fa';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -48,6 +54,7 @@ function App() {
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [titles, setTitles] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -59,6 +66,18 @@ function App() {
       }
     };
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchTitles = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/titles`);
+        setTitles(data);
+      } catch (err) {
+        toast.error(getError(err));
+      }
+    };
+    fetchTitles();
   }, []);
 
   return (
@@ -88,7 +107,7 @@ function App() {
                 <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
-                    Cart
+                    Cart <FiShoppingCart />
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -98,10 +117,14 @@ function App() {
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                       <LinkContainer to="/profile">
-                        <NavDropdown.Item>User Profile</NavDropdown.Item>
+                        <NavDropdown.Item>
+                          User Profile <GrUserAdmin />
+                        </NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/orderhistory">
-                        <NavDropdown.Item>Order History</NavDropdown.Item>
+                        <NavDropdown.Item>
+                          Order History <AiOutlineHistory />
+                        </NavDropdown.Item>
                       </LinkContainer>
                       <NavDropdown.Divider />
                       <Link
@@ -109,27 +132,36 @@ function App() {
                         to="#signout"
                         onClick={signoutHandler}
                       >
-                        Sign Out
+                        Sign Out <GoSignOut />
                       </Link>
                     </NavDropdown>
                   ) : (
                     <Link className="nav-link" to="/signin">
-                      Sign In
+                      Sign In <GoSignIn />
                     </Link>
                   )}
+
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
-                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                        <NavDropdown.Item>
+                          Dashboard <AiOutlineAreaChart />
+                        </NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/products">
-                        <NavDropdown.Item>Products</NavDropdown.Item>
+                        <NavDropdown.Item>
+                          Products <MdSell />
+                        </NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/orders">
-                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                        <NavDropdown.Item>
+                          Orders <FaFileAlt />
+                        </NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/users">
-                        <NavDropdown.Item>Users</NavDropdown.Item>
+                        <NavDropdown.Item>
+                          Users <FaUserCog />
+                        </NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
                   )}
@@ -146,6 +178,7 @@ function App() {
           }
         >
           <Nav className="flex-column text-white w-100 p-2">
+            <br />
             <Nav.Item>
               <strong>Categories</strong>
             </Nav.Item>
@@ -159,6 +192,22 @@ function App() {
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
+                </LinkContainer>
+              </Nav.Item>
+            ))}
+            <Nav.Item>
+              <strong>Titles</strong>
+            </Nav.Item>
+            {titles.map((title) => (
+              <Nav.Item key={title}>
+                <LinkContainer
+                  to={{
+                    pathname: '/search',
+                    search: `?title=${title}`,
+                  }}
+                  onClick={() => setSidebarIsOpen(false)}
+                >
+                  <Nav.Link>{title}</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
             ))}
@@ -223,7 +272,7 @@ function App() {
                 path="/admin/users"
                 element={
                   <AdminRoute>
-                    <UserListScreen/>
+                    <UserListScreen />
                   </AdminRoute>
                 }
               ></Route>
@@ -256,7 +305,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className="text-center">All rights reserved</div>
+          <div className="text-center">BANPRESTO.CO</div>
         </footer>
       </div>
     </BrowserRouter>

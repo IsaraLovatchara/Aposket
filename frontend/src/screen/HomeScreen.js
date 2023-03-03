@@ -7,6 +7,7 @@ import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { FcLike } from 'react-icons/fc';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -45,8 +46,13 @@ function HomeScreen() {
       <Helmet>
         <title>Aposket</title>
       </Helmet>
+      <img alt="sliedshow" src="/images/SS.gif" height="500px" width="1090px" />
       <br />
-      <h1>Feature Products</h1>
+      <br />
+      <h1>
+        Feature Products <FcLike />
+      </h1>
+      <br />
       <div className="products">
         {loading ? (
           <LoadingBox />
