@@ -13,6 +13,7 @@ const orderSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product',
           required: true,
+          versionKey: false,
         },
       },
     ],
@@ -42,6 +43,7 @@ const orderSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 

@@ -20,8 +20,6 @@ productRouter.post(
       category: 'sample category',
       title: 'sample title',
       countInStock: 0,
-      //add
-      numReviews: 0,
       description: 'sample description',
     });
     const product = await newProduct.save();
