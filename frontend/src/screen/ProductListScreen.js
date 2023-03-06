@@ -9,6 +9,9 @@ import { Store } from '../Store';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { getError } from '../components/utils';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { FaRegEdit } from 'react-icons/fa';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -139,7 +142,11 @@ export default function ProductListScreen() {
         </Col>
         <Col className="col text-end">
           <div>
-            <Button type="button" onClick={createHandler}>
+            <Button
+              type="button"
+              onClick={createHandler}
+              className="create-button"
+            >
               Create Product
             </Button>
           </div>
@@ -180,7 +187,7 @@ export default function ProductListScreen() {
                       variant="light"
                       onClick={() => navigate(`/admin/product/${product._id}`)}
                     >
-                      Edit
+                      Edit <FaRegEdit />
                     </Button>
                     &nbsp;
                     <Button
@@ -188,7 +195,7 @@ export default function ProductListScreen() {
                       variant="light"
                       onClick={() => deleteHandler(product)}
                     >
-                      Delete
+                      Delete <RiDeleteBin6Line />
                     </Button>
                   </td>
                 </tr>

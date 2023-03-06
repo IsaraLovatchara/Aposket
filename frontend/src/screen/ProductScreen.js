@@ -89,7 +89,8 @@ function ProductScreen() {
               </Helmet>
               <h1>{product.name}</h1>
             </ListGroup.Item>
-            <ListGroup.Item></ListGroup.Item>
+            <ListGroup.Item>Category : {product.category}</ListGroup.Item>
+            <ListGroup.Item>Title : {product.title}</ListGroup.Item>
             <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
             <ListGroup.Item>
               Description: <p>{product.description}</p>
@@ -122,7 +123,7 @@ function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button onClick={addToCartHandler} variant="secondary">
+                      <Button onClick={addToCartHandler} className="add2">
                         Add to Cart
                       </Button>
                     </div>

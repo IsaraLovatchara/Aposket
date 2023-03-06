@@ -15,13 +15,23 @@ main {
   flex: 1;
 }
 
-.btn-primary,
-.btn-outline-primary {
-  background-color: #e97451;
+.add1 {
+  background-color: #18f548;
   color: #000000;
+  border: none;
 }
-.btn-primary:hover {
-  background-color: #36454f;
+.add1:hover {
+  background-color: #f7a01e;
+  color: white;
+}
+
+.add2 {
+  background-color: #18f548;
+  color: #000000;
+  border: none;
+}
+.add2:hover {
+  background-color: #f7a01e;
   color: white;
 }
 
@@ -104,13 +114,55 @@ main {
 }
 
 .proceed-checkout {
-  background-color: #72ffb8;
+  background-color: #fa3f3f;
   color: #000000;
   border-color: #000000;
 }
 
 .signin-button {
+  border: none;
+}
+.signin-button:hover {
   background-color: #72e3ff;
+  color: white;
+}
+
+.continue {
+  background-color: #fa3f3f;
   color: #000000;
   border: none;
+}
+.continue:hover {
+  background-color: #2c00f0;
+  color: white;
+}
+
+.placeorder {
+  background-color: #fa3f3f;
+  color: #000000;
+  border: none;
+}
+.placeorder:hover {
+  background-color: #2c00f0;
+  color: white;
+}
+
+.update {
+  background-color: #2c00f0;
+  color: white;
+  border: none;
+}
+.update:hover {
+  background-color: #8400f0;
+  color: white;
+}
+
+.create-button {
+  background-color: #f7c900;
+  color: #000000;
+  border: none;
+}
+.create-button:hover {
+  background-color: #2c00f0;
+  color: white;
 }

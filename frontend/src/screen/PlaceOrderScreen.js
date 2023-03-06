@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useReducer} from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -21,8 +21,8 @@ const reducer = (state, action) => {
       return { ...state, loading: false };
     case 'CREATE_FAIL':
       return { ...state, loading: false };
-      case 'UPDATE_STOCK':
-        return { ...state, loading: false };
+    case 'UPDATE_STOCK':
+      return { ...state, loading: false };
     default:
       return state;
   }
@@ -77,14 +77,12 @@ export default function PlaceOrderScreen() {
     }
   };
 
-  
-
   useEffect(() => {
     if (!cart.paymentMethod) {
       navigate('/payment');
     }
   }, [cart, navigate]);
-  
+
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -183,6 +181,7 @@ export default function PlaceOrderScreen() {
                       type="button"
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
+                      className="placeorder"
                     >
                       Place Order
                     </Button>

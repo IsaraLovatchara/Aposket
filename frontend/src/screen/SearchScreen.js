@@ -36,16 +36,16 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: '$1 to $50',
-    value: '1-50',
+    name: '$100 to $150',
+    value: '100-150',
   },
   {
-    name: '$51 to $200',
-    value: '51-200',
+    name: '$151 to $250',
+    value: '151-250',
   },
   {
-    name: '$201 to $1000',
-    value: '201-1000',
+    name: '$251 to $500',
+    value: '251-500',
   },
 ];
 
@@ -114,16 +114,11 @@ export default function SearchScreen() {
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
+          <h3>Categories</h3>
           <div>
             <ul>
               <li>
-                <Link
-                  className={'all' === category ? 'text-bold' : ''}
-                  to={getFilterUrl({ category: 'all' })}
-                >
-                  Any
-                </Link>
+                <Link onClick={() => navigate('/search')}>Any</Link>
               </li>
               {categories.map((c) => (
                 <li key={c}>
@@ -160,9 +155,6 @@ export default function SearchScreen() {
               ))}
             </ul>
           </div>
-          <div>
-            <h3>Avg. Customer Review</h3>
-          </div>
         </Col>
         <Col md={9}>
           {loading ? (
@@ -177,9 +169,11 @@ export default function SearchScreen() {
                     {countProducts === 0 ? 'No' : countProducts} Results
                     {query !== 'all' && ' : ' + query}
                     {category !== 'all' && ' : ' + category}
+                    {title !== 'all' && ' : ' + title}
                     {price !== 'all' && ' : Price ' + price}
                     {query !== 'all' ||
                     category !== 'all' ||
+                    title !== 'all' ||
                     price !== 'all' ? (
                       <Button
                         variant="light"
@@ -201,7 +195,6 @@ export default function SearchScreen() {
                     <option value="newest">Newest Arrivals</option>
                     <option value="lowest">Price: Low to High</option>
                     <option value="highest">Price: High to Low</option>
-                    <option value="toprated">Avg. Customer Reviews</option>
                   </select>
                 </Col>
               </Row>

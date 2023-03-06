@@ -8,6 +8,8 @@ import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { getError } from '../components/utils';
 import { toast } from 'react-toastify';
+import { AiOutlineFile } from 'react-icons/ai';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -131,7 +133,7 @@ export default function OrderListScreen() {
                       navigate(`/order/${order._id}`);
                     }}
                   >
-                    Details
+                    Details <AiOutlineFile />
                   </Button>
                   &nbsp;
                   <Button
@@ -139,7 +141,7 @@ export default function OrderListScreen() {
                     variant="light"
                     onClick={() => deleteHandler(order)}
                   >
-                    Delete
+                    Delete <RiDeleteBin6Line />
                   </Button>
                 </td>
               </tr>

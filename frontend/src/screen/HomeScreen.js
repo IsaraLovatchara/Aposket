@@ -55,7 +55,7 @@ function HomeScreen() {
       <br />
       <br />
       <h1>
-        Feature Products <FcLike />
+        Our Products <FcLike />
       </h1>
       <br />
       <div className="products">

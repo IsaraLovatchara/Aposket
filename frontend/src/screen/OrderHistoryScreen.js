@@ -7,6 +7,7 @@ import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { getError } from '../components/utils';
 import Button from 'react-bootstrap/esm/Button';
+import { AiOutlineFile } from 'react-icons/ai';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -92,7 +93,7 @@ export default function OrderHistoryScreen() {
                       navigate(`/order/${order._id}`);
                     }}
                   >
-                    Details
+                    Details <AiOutlineFile />
                   </Button>
                 </td>
               </tr>
